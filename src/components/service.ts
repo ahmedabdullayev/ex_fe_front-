@@ -1,8 +1,8 @@
 import http from "./http-common";
 
 class DataService {
-    getAll(): Promise<any> {
-        return http.get("/");
+    getAllCategories(): Promise<any> {
+        return http.get("/categories");
     }
 
 }

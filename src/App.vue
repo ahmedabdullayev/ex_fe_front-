@@ -4,23 +4,28 @@
     <router-link to="/about">About</router-link>
   </div>
   <router-view/>
+  <ul>
+    <li v-for="category in categories" :key="category.id">
+      <router-link :to="{ name: 'category', params: {id: category.name} }"> {{category.name}}</router-link>
+    </li>
+  </ul>
 </template>
 
 <script lang="ts">
 import {defineComponent, ref} from "vue";
 import service from "@/components/service";
-
+import Categories from "@/types/Categories"
 export default defineComponent({
   name: 'App',
   data(){
     return {
-      test: String,
+      categories: [] as Categories[],
     }
   },
-  mounted() {
-    service.getAll()
+  async mounted() {
+    await service.getAllCategories()
         .then((response) => {
-          this.testb = response.data;
+          this.categories = response.data;
           console.log(response.data);
         })
         .catch((e: Error) => {
