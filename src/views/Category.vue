@@ -1,35 +1,23 @@
 <template>
   <div>
-    <div class="form-group">
-      <h1>{{ categories }}</h1>
-    </div>
-
-    <div class="col-md-6">
-      <h1>Page</h1>
-    </div>
+   Category page
+    <categories-posts></categories-posts>
+    <routes></routes>
+    up
   </div>
 </template>
 
 <script lang="ts">
-import {useRoute} from "vue-router";
+import {defineComponent} from "vue";
+import CategoriesPosts from "@/components/categoriesPosts.vue";
+import Routes from "@/components/routes.vue";
 
-export default {
+export default defineComponent({
   name: "Category",
-  data(){
-    return{
-      categories: '' as string,
-    }
-  },
+  components: {Routes, CategoriesPosts},
 
-  mounted() {
-    const route = useRoute();
-    this.categories = route.params.id;
-  },
-  updated() {
-    const route = useRoute();
-    this.categories = route.params.id;
-  }
-}
+});
+
 </script>
 
 <style scoped>
